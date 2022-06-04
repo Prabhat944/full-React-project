@@ -8,7 +8,9 @@
     color: white;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    max-width: 20%;
+    margin-left: 5px;
+   
   }
   
   .expense-date__month {
