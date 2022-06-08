@@ -12,7 +12,7 @@ setTitle('Changed');
 }
 const editAmount=()=>{
   setAmount(prevAmount=>{
-    const total=prevAmount+100;
+    const total=  +prevAmount+100;
     return total;
   })
 }
