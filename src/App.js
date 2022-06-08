@@ -26,10 +26,13 @@ const App = () => {
     },
   ];
 
+  const newExpenseHandler=(event)=>{
+    console.log(event)
+  }
   return (
     <div>
       <h2>Let's get started!</h2>
-      <ExpenseForm />
+      <ExpenseForm  newExpense={newExpenseHandler}/>
       <Expenses items={expenses} />
     </div>
   );
