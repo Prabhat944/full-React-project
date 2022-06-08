@@ -1,21 +1,62 @@
-import ExpenseItem from './ExpenseItem';
-import './Expenses.css';
-import Card from '../UI/Card';
-const Expenses = ()=>{
-    const expense=[
-        {title:"Car Insurence",amount:347.65,date:new Date(2022, 1, 5),location:"Main Road"},
-        {title:"Resturent Bill",amount:576.90,date:new Date(2022, 5, 22),location:"Gol Bagicha"},
-        {title:"House EMI",amount:9824.67,date:new Date(2022, 2, 46),location:"SUN CITY"},
-        {title:"ELectricity Bill",amount:1240.36,date:new Date(2022, 6, 13),location:"SBPDCL Office"}
-      ]
-    return <Card className='expenses'>
-    <ExpenseItem title={expense[0].title} amount={expense[0].amount} date={expense[0].date} location={expense[0].location}></ExpenseItem>
-    <ExpenseItem title={expense[1].title} amount={expense[1].amount} date={expense[1].date} location={expense[1].location}></ExpenseItem>
-    <ExpenseItem title={expense[2].title} amount={expense[2].amount} date={expense[2].date} location={expense[2].location}></ExpenseItem>
-    <ExpenseItem title={expense[3].title} amount={expense[3].amount} date={expense[3].date} location={expense[3].location}></ExpenseItem>
-     
-    </Card>
-}
+import React, { useState } from 'react';
 
+import ExpenseItem from './ExpenseItem';
+import Card from '../UI/Card';
+import './Expenses.css';
+
+const Expenses = (props) => {
+const [removedlist,setremovedlist]=useState(props.items);
+
+  const deleteHandler=event=>{
+    setremovedlist(prevList=>{
+      const updatedlist=prevList.filter(prev=>prev.id !== event)
+      return updatedlist;
+    })
+       
+  }
+  
+  
+
+  return (
+    <Card className="expenses">
+      { removedlist.map(obj=>(<ExpenseItem
+        key={obj.id}
+        id={obj.id}
+        title={obj.title}
+        amount={obj.amount}
+        date={obj.date}
+        removed={deleteHandler}
+      />))}
+      {/* <ExpenseItem
+        id={props.items[0].id}
+        title={props.items[0].title}
+        amount={props.items[0].amount}
+        date={props.items[0].date}
+        remove={deleteHandler}
+      />
+      <ExpenseItem
+        
+        id={props.items[1].id}
+        amount={props.items[1].amount}
+        date={props.items[1].date}
+        remove={deleteHandler}
+      />
+      <ExpenseItem
+       
+        id={props.items[2].id}
+        amount={props.items[2].amount}
+        date={props.items[2].date}
+        remove={deleteHandler}
+      />
+      <ExpenseItem
+        
+        id={props.items[3].id}
+        amount={props.items[3].amount}
+        date={props.items[3].date}
+        remove={deleteHandler}
+      /> */}
+    </Card>
+  );
+}
 
 export default Expenses;
