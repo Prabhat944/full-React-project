@@ -1,20 +1,29 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 import ExpenseDate from './ExpenseDate';
 import Card from '../UI/Card';
 import './ExpenseItem.css';
 
 const ExpenseItem = (props) => {
-    const remove=()=>{
-        props.removed(props.id);
-    }
+const [title , setTitle] =  useState(props.title);
+const [amount , setAmount] =  useState(props.amount);
+const editTitle=()=>{
+setTitle('Changed');
+}
+const editAmount=()=>{
+  setAmount(prevAmount=>{
+    const total=prevAmount+100;
+    return total;
+  })
+}
   return (
     <Card className='expense-item'>
       <ExpenseDate date={props.date} />
       <div className='expense-item__description'>
-        <h2>{props.title}</h2>
-        <div className='expense-item__price'>${props.amount}</div>
-        <button type='submit'  onClick={remove}>Delete Expense</button>
+        <h2>{title}</h2>
+        <div className='expense-item__price'>${amount}</div>
+        <button type='submit'  onClick={editTitle}>Edit Title</button>
+        <button type='submit'  onClick={editAmount}>Change Expense</button>
       </div>
     </Card>
   );
