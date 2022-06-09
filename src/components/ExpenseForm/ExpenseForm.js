@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import './ExpenseForm.css';
-import Card from '../UI/Card';
+
 
 const ExpenseForm = (props)=>{
     const [enteredTitle,setEnteredTitle] = useState('');
@@ -36,31 +36,34 @@ const ExpenseForm = (props)=>{
        event.preventDefault();
        const output={
            title:enteredTitle,
-           amount:enteredAmount,
+           amount: +enteredAmount,
            date:new Date(enteredDate)
        }
         props.newExpense(output);
     }
-return <Card className='new-expense'>
+    
+return <div className='new-expense'>
     <form onSubmit={addExpenseHandler}> 
-        <div className='new-expense__control'>
-        <label>Expense Title</label>
-        <input type='text' value={enteredTitle}  onChange={textHandler} required/>
-        </div>
-        <div className='new-expense__control'>
-        <label>Expense Amount</label>
-        <input type='number' value={enteredAmount} onChange={amountHandler} required/>
-        </div>
-        <div className='new-expense__control'>
-        <label>Date</label>
-        <input type='date' value={enteredDate}  onChange={dateHandler} required/>
-        </div>
-        <div>
-            <button type='submit'>Submit</button>
-        </div>
+    <div className='new-expense__control'>
+    <label>Expense Title</label>
+    <input type='text' value={enteredTitle}  onChange={textHandler} required/>
+    </div>
+    <div className='new-expense__control'>
+    <label>Expense Amount</label>
+    <input type='number' value={enteredAmount} onChange={amountHandler} required/>
+    </div>
+    <div className='new-expense__control'>
+    <label>Date</label>
+    <input type='date' value={enteredDate}  onChange={dateHandler} min="2019-01-01" max="2022-12-31" required/>
+    </div>
+    <div>
+        <button type='button' onClick={props.onCancel}>Cancel</button>
+        <button type='submit'>Submit</button>
+    </div>
 
-    </form>
-</Card>
+</form>
+    
+</div>
 }
 
 export default ExpenseForm;

@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 
 import Expenses from './components/Expense/Expenses';
-import ExpenseForm from './components/ExpenseForm/ExpenseForm';
+import NewExpense from './components/NewExpense/NewExpense';
 
 
 const expenses = [
@@ -36,10 +36,11 @@ const App = () => {
        return [output, ...prevExpense];
      })
   };
+  
   return (
     <div>
       <h2>Let's get started!</h2>
-      <ExpenseForm  newExpense={newExpenseHandler}/>
+      <NewExpense  newExpense={newExpenseHandler}/>
       <Expenses items={oldExpense} />
     </div>
   );

@@ -1,9 +1,9 @@
 import React,{useState} from 'react';
-
 import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card';
 import './Expenses.css';
 import ExpenseFilter from '../ExpenseFilter/ExpenseFilter';
+import ExpenseChart from './ExpenseChart';
 
 const Expenses = (props) => {  
   const [filteredYear,setFiltered]=useState('2020');
@@ -24,13 +24,14 @@ if(filteredObject.length > 0){
     amount={obj.amount}
     date={obj.date}
 
-  />))
-}
+  />)
+  )}
   return  (
       <Card className="expenses">
         <div>
           <ExpenseFilter filtered={filteredYear} onFiltered={filterChangeHandler}/>
         </div>
+        <ExpenseChart expensesList={filteredObject}/>
         {ExpenseContent}
         {filteredObject.length === 1 && <p>Only single Expense here. Please add more..</p>}
       
